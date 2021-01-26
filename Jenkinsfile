@@ -4,16 +4,11 @@ pipeline {
 
   stages {
 
-    stage('Checkout Source') {
-      steps {
-        git url:'https://github.com/TovmasHovhannisyan/hellowhale.git', branch:'master'
-      }
-    }
-    
+   
       stage("Build image") {
             steps {
-                script {                   
-                    myapp = docker.build("tovmas94/hellowhale:${env.BUILD_ID}")
+                script {
+                    myapp = docker.build("tovmas94/hello:${env.BUILD_ID}")
                 }
             }
         }
@@ -28,47 +23,16 @@ pipeline {
                 }
             }
         }
-        
-
-
-stage("Deploy to Staging"){
-            when {
-                branch 'tovmas/hellowhale-1'
-            }
-            steps {
-                kubernetesDeploy kubeconfigId: 'k8s-cluster', configs: 'hellowhale-stg.yml', enableConfigSubstitution: true  // REPLACE kubeconfigId
-             }
-            post{
-                success{
-                    echo "Successfully deployed to Staging"
-                }
-                failure{
-                    echo "Failed deploying to Staging"
-                }
-            }
-        }
-        
 
     
-stage("Deploy to Production"){
-            when {
-                branch 'master'
-            }
-            steps { 
-                kubernetesDeploy kubeconfigId: 'k8s-cluster', configs: 'hellowhale-prod.yml', enableConfigSubstitution: true  // REPLACE kubeconfigId
- 
-             }
-            post{
-                success{
-                    echo "Successfully deployed to Production"
-                }
-                failure{
-                    echo "Failed deploying to Production"
-                }
-            }
+    stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "k8s-cluster")
         }
-        
-                   
+      }
+    }
 
+  }
 
 }
