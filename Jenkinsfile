@@ -25,13 +25,13 @@ pipeline {
         }
 
     
-    stage('Deploy App') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "k8s-cluster")
-        }
-      }
-    }
+#    stage('Deploy App') {
+#      steps {
+#        script {
+#          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "k8s-cluster")
+#        }
+#      }
+#    }
 
   }
 
