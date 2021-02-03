@@ -7,13 +7,11 @@ pipeline {
    
       stage("Build image") {
             steps {
-                script {
                   ls > test.txt
                   cat test.txt
                 }
             }
-        }
-    
+            
       stage("Push image") {
             steps {
                 script {
