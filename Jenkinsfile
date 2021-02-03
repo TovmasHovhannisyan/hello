@@ -1,6 +1,7 @@
 pipeline {
   agent {
     kubernetes {
+      defaultContainer 'dind'
       yamlFile 'KubernetesPod.yaml'
     }
   }
