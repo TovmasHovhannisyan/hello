@@ -8,7 +8,7 @@ pipeline {
       stage("Build image") {
             steps {
                 script {
-                  pwd
+                  echo `ls`
                 }
             }
         }
