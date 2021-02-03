@@ -8,7 +8,7 @@ pipeline {
       stage("Build image") {
             steps {
                 script {
-                  docker build tovmas94/hello:${env.BUILD_ID}
+                  pwd
                 }
             }
         }
