@@ -11,11 +11,11 @@ spec:
       image: jenkinsci/jnlp-slave
       resources:
         limits:
-          cpu: 50m
-          memory: 100Mi
-        requests:
           cpu: 100m
           memory: 200Mi
+        requests:
+          cpu: 50m
+          memory: 100Mi
       imagePullPolicy: Always
       env:
       - name: POD_IP
