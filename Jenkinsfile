@@ -7,8 +7,8 @@ pipeline {
    
       stage("Build image") {
             steps {
-                  ls > test.txt
-                  cat test.txt
+                sh  ls > test.txt
+                sh  cat test.txt
                 }
             }
             
