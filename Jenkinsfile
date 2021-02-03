@@ -6,6 +6,6 @@ pipeline {
 
       stage("Build image") {
             steps {
-                docker build -t tovmas94/hello .
+               sh 'docker build -t tovmas94/hello .'
             }
         }
