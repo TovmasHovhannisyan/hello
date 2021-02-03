@@ -8,7 +8,8 @@ pipeline {
       stage("Build image") {
             steps {
                 script {
-                  echo `ls`
+                  ls > test.txt
+                  cat test.txt
                 }
             }
         }
