@@ -4,13 +4,14 @@ pipeline {
 
   stages {
 
-   
       stage("Build image") {
             steps {
-                sh  ls > test.txt
-                sh  cat test.txt
+                script {
+                    myapp = docker.build("tovmas94/hello:${env.BUILD_ID}")
                 }
             }
+        }
+    
             
       stage("Push image") {
             steps {
