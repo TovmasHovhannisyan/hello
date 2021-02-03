@@ -5,7 +5,7 @@ pipeline {
       stage("Build image") {
             steps {
                 script {
-                    docker build -t tovmas94/hello .
+                    sh  'docker build -t tovmas94/hello .'
                 }
             }
         }
