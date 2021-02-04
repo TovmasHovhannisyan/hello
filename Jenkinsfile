@@ -27,6 +27,16 @@ pipeline {
                 }
             }
         }
+    
+      stage('Deploy App') {
+        steps {
+          script {
+            sh 'wget https://dl.k8s.io/release/v1.19.3/bin/linux/amd64/kubectl -P /usr/local/bin/ && chmod 770 /usr/local/bin/kubectl'
+            kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "k8s-popupschool")
+          }
+        }
+      }    
+    
   }
 
 }
